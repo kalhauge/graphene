@@ -7,6 +7,7 @@ The purpose of this example is to draw a simple triangle.
 """
 
 from graphene import sdl
+from graphene import gl
 
 SIZE = (600, 600)
 
@@ -22,19 +23,23 @@ def main():
     
     renderer = sdl.Renderer.create(
         window=window,
+        index=-1,
         flags={'accelerated', 'targettexture'}
     )
 
     print(renderer.info())
 
+    context = gl.current_context()
 
+    print(context)
 
     running = True
     while running:
-        event = sdl.poll_event()
-        if isinstance(event, sdl.event.Quit):
-            print(event.timestamp)
-            break;
+        for event in sdl.event.pending_events():
+            if isinstance(event, sdl.event.Quit):
+                print(event.timestamp)
+                running = False
+                break;
     
     window.destroy()
     renderer.destroy()
