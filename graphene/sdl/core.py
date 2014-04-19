@@ -7,6 +7,7 @@ An wraper around SDL, to make it more pythonic.
 """
 import sdl2 as _s
 from . import utils
+from enum import Enum
 
 class SubSystem(utils.Flags):
     timer = _s.SDL_INIT_TIMER

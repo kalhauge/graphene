@@ -2,4 +2,4 @@
 OpenGL patch to make gl be more pythonic
 """
 
-from .context import current_context
+from .context import context_info
