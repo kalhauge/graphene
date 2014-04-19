@@ -26,6 +26,9 @@ class Renderer:
         )
         return Renderer(rhandle)
 
+    def present(self):
+        _s.SDL_RenderPresent(self._handle)
+
     def info(self):
         info = _s.SDL_RendererInfo()
         retval = _s.SDL_GetRendererInfo(self._handle, info)
@@ -33,7 +36,7 @@ class Renderer:
         return RendererInfo(info)
 
     def destroy(self):
-        _s.SDL_DestroyRendere(self._handler)
+        _s.SDL_DestroyRenderer(self._handle)
 
 class RendererInfo:
     

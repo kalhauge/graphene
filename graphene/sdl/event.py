@@ -73,7 +73,17 @@ class Event:
             return EventType(event.type).create(event)
 
 def poll_event():
+    """ SDL_PollEvent """
     return Event.poll()
+
+def pending_events():
+    while True:
+        event = Event.poll()
+        if event is None:
+            break
+        else:
+            yield event
+
 
 class Quit (Event):
     field = 'quit'
