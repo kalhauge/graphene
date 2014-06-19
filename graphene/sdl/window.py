@@ -62,6 +62,14 @@ class Window:
 
         return Window(whandle)
 
+    @property
+    def surface(self):
+        from .surface import Surface
+        return Surface(_s.SDL_GetWindowSurface(self._handle))
+
+    def update(self):
+        _s.SDL_UpdateWindowSurface(self._handle)
+
 def create_window(title, center, size, **kwargs) -> Window:
     """
     Creates an window, equivlent to :func:`Window.create`
